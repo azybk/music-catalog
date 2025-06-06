@@ -11,7 +11,7 @@ import (
 
 func (s *service) SignUp(request memberships.SignUpRequest) error {
 	existingUser, err := s.repository.GetUser(request.Email, request.Username, 0)
-	if err != nil || err != sql.ErrNoRows {
+	if err != nil && err != sql.ErrNoRows {
 		log.Fatalf("error get user from database, err:%+v", err)
 		return err
 	}
