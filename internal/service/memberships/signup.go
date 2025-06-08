@@ -1,17 +1,17 @@
 package memberships
 
 import (
-	"database/sql"
 	"errors"
 	"log"
 
 	"github.com/azybk/music-catalog/internal/models/memberships"
 	"golang.org/x/crypto/bcrypt"
+	"gorm.io/gorm"
 )
 
 func (s *service) SignUp(request memberships.SignUpRequest) error {
 	existingUser, err := s.repository.GetUser(request.Email, request.Username, 0)
-	if err != nil && err != sql.ErrNoRows {
+	if err != nil && err != gorm.ErrRecordNotFound {
 		log.Fatalf("error get user from database, err:%+v", err)
 		return err
 	}
