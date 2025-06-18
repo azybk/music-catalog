@@ -2,16 +2,22 @@ package configs
 
 type (
 	Config struct {
-		Service  Service  `mapstructure:"service"`
-		Database Database `mapstructure:"database"`
+		Service       Service
+		Database      Database
+		SpotifyConfig SpotifyConfig
 	}
 
 	Service struct {
-		Port      string `mapstructure:"port"`
-		SecretJWT string `mapstructure:"secretJWT"`
+		Port      string
+		SecretJWT string
 	}
 
 	Database struct {
-		DataSourceName string `mapstructure:"dataSourceName"`
+		DataSourceName string
+	}
+
+	SpotifyConfig struct {
+		ClientID     string
+		ClientSecret string
 	}
 )
